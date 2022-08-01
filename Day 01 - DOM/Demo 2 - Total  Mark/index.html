@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diem thi dai hoc</title>
+</head>
+
+<body>
+    <h2>Điểm Thi Đại Học</h2>
+
+    <form>
+        <label for="fname">Tên của bạn:</label><br>
+        <input type="text" id="fname" name="fname" placeholder="Nhập tên của bạn" required onkeyup="promtName(this)"><br>
+        <label for="math">Toán:</label><br>
+        <input type="number" id="math" name="math" placeholder="0" min="0" max="10" required onkeyup="promtMath(this)"><br>
+        <label for="literature">Văn:</label><br>
+        <input type="number" id="literature" name="literature" placeholder="0" min="0" max="10" required onkeyup="promtLiterature(this)"><br>
+        <label for="english">Tiếng anh:</label><br>
+        <input type="number" id="english" name="english" placeholder="0" min="0" max="10" required onkeyup="promtEnglish(this)"><br>
+        <label for="region">Tổng:</label>
+        <select name="region" id="region">
+            <option value="0.75">Khu vực 1</option>
+            <option value="0.5">Khu vực 2-NT</option>
+            <option value="0.25">Khu vực 2</option>
+            <option value="0">Khu vực 3</option>
+        </select>
+        <input type="submit" value="Calculate" onclick="cal(event)">
+        <br><br>
+        <div id="result">Tổng điểm: 0</div>
+    </form>
+    <script>
+        var fname, math, literature, english, region = 0.75;
+
+        function promtName(obj) {
+            fname = obj.value;
+        }
+
+        function promtMath(obj) {
+            math = parseFloat(obj.value);
+        }
+
+        function promtLiterature(obj) {
+            literature = parseFloat(obj.value);
+        }
+
+        function promtEnglish(obj) {
+            english = parseFloat(obj.value);
+        }
+        let regionDropdown = document.getElementById("region");
+        regionDropdown.addEventListener('change', function() {
+            region = parseFloat(this.value);
+        })
+
+        function cal(e) {
+            e.preventDefault();
+            let total = math + literature + english + region;
+            document.getElementById('result').innerText = "Tong diem: " + total;
+        }
+    </script>
+</body>
+
+</html>
